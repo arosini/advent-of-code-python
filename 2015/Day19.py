@@ -45,27 +45,13 @@ def part2():
             if len(split_line) == 1: medicine_molecule = split_line[0][::-1]
             else: transformations[split_line[1][::-1]] = split_line[0][::-1]
 
-    # This works due to how the puzzle is constructed, and will not work for the general case.
+    # Greedily replace the string with matching values from left to right (it was reversed).
     count = 0
     while medicine_molecule != target:
         medicine_molecule = re.sub('|'.join(transformations.keys()), lambda x: transformations[x.group()],
                                    medicine_molecule, 1)
         count += 1
     print(count)
-
-
-def reverse_dfs(current, target, transformations, transform_count, visited):
-    if current == target: return transform_count
-    if current in visited: return None
-    visited.add(current)
-
-    for transformation in transformations:
-        if transformation[0] not in current: continue
-        next_molecule = current.replace(transformation[0], transformation[1], 1)
-        next_transform_count = reverse_dfs(next_molecule, target, transformations,  transform_count + 1, visited)
-        if next_transform_count is not None: return next_transform_count
-
-    return None
 
 
 part1()
@@ -161,3 +147,18 @@ def compatible_nt_pairs(nt_pairs, nt_target_pairs):
         if not found: return False
 
     return True
+
+
+# This DFS also failed due to not terminating.
+def reverse_dfs(current, target, transformations, transform_count, visited):
+    if current == target: return transform_count
+    if current in visited: return None
+    visited.add(current)
+
+    for transformation in transformations:
+        if transformation[1] not in current: continue
+        next_molecule = current.replace(transformation[1], transformation[0], 1)
+        next_transform_count = reverse_dfs(next_molecule, target, transformations,  transform_count + 1, visited)
+        if next_transform_count is not None: return next_transform_count
+
+    return None
