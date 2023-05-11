@@ -9,6 +9,13 @@ def factors(n):
             result |= {i, div}
     return result
 
+
+# I originally tried with algo 2 outlined in https://www.reddit.com/r/adventofcode/comments/3xjpp2/comment/cy59zd9/.
+# However, the numbers are big enough that n squared easy operations becomes problematic.
+# This solution sums the factors of a given number (since only those elves will visit that house), and multiplies by 10.
+# It also assumes the answer will be divisible by 10 (maybe only a good assumption for my input), and also only starts
+# checking numbers greater than 50 times the target. This is because while I was figuring this out, I noticed
+# most houses had sums of ~20 or ~30 times their house number. The largest I saw was ~40 times.
 @timeit
 def part1():
     target = int(open("input/Day20.txt").read().strip())
@@ -19,6 +26,9 @@ def part1():
             print(x)
             break
 
+
+# My first solution completely breaks down with the requirements for part two, so instead I implemented the
+# "calculate the total for every house" solution, which seems naive at first, but actually works well here.
 @timeit
 def part2():
     target = int(open("input/Day20.txt").read().strip())

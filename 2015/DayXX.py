@@ -3,7 +3,10 @@ from util.Util import timeit
 
 @timeit
 def part1():
-    print('part1')
+    with open("input/DayXX.txt") as file:
+        lines = file.readlines()
+        for line in lines:
+            if line.strip() == "": continue
 
 
 @timeit
