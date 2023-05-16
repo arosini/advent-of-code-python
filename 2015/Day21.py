@@ -5,7 +5,7 @@ import math
 
 
 class Boss:
-    def __init__(self, hp, damage, armor,):
+    def __init__(self, hp, damage, armor, ):
         assert hp > 0
         assert damage > 0
         assert armor >= 0
@@ -118,10 +118,10 @@ def find_gold_spent(part_1):
                 cost = weapon.cost + (armor.cost if armor else 0) + sum(ring.cost for ring in ring_set)
 
                 if part_1 and character_wins:
-                     if gold is None or cost < gold: gold = cost
+                    if gold is None or cost < gold: gold = cost
 
                 if not part_1 and not character_wins:
-                    if gold is None or cost> gold: gold = cost
+                    if gold is None or cost > gold: gold = cost
 
     print(gold)
 
@@ -139,4 +139,3 @@ def part2():
 part1()
 print()
 part2()
-
