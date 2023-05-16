@@ -1,2 +1,5 @@
-Hit Points: 58
+Hit Points: 58inc a
+jio a, +2
+tpl a
+inc a
 Damage: 9
