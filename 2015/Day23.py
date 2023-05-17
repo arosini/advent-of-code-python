@@ -46,7 +46,7 @@ def part1():
 
 @timeit
 def part2():
-    print('part1: ' + str(run(False)))
+    print('part2: ' + str(run(False)))
 
 
 part1()
